@@ -2,12 +2,12 @@ version: "3.7"
 services:
 
 # ZABBIX WEB
-  zabbix-web-apache-pgsql:
+  zabbix-web:
     image: leandromoreirajfa/zabbix-web-apache-pgsql:1.1
     command: setup.sh
     env_file:
-      - zabbix-web.config
-    hostname: zabbix-web-apache-psql
+      - web.config
+    hostname: zabbix-web
     ports:
       - "80:80"
       - "443:443"
