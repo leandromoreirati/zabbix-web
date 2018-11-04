@@ -1,4 +1,4 @@
-![alt tag](https://www.elastic.co/assets/blt244a845f141977c3/elastic-logo.svg)
+![alt tag](https://assets.zabbix.com/img/logo.svg)
 
 Criado por Leandro Moreira\
 E-Mail: leandro@leandromoreira.eti.br\
