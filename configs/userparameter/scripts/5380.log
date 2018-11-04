@@ -1,0 +1,54 @@
+DSN info: DSN='ZABBIX',server='127.0.0.1',port='5432',dbase='zabbix',user='zabbix',passwd='xxxxx'
+          onlyread='No',protocol='9.4',showoid='',fakeoidindex='',showsystable='No'
+          conn_settings='(null)', conn_encoding='(null)'
+          translation_dll='',translation_option=''
+conn = 0x216ec80, PGAPI_Connect(DSN='ZABBIX', UID='zabbix', PWD='xxxxx')
+Driver Version='09.03.0300,201405140001'
+Global Options: fetch=100, socket=4096, unknown_sizes=0, max_varchar_size=255, max_longvarchar_size=8190
+                disable_optimizer=0, ksqo=1, unique_index=1, use_declarefetch=0
+                text_as_longvarchar=1, unknowns_as_longvarchar=0, bools_as_char=1 NAMEDATALEN=64
+                extra_systable_prefixes='dd_;', conn_settings='(null)' conn_encoding=''
+conn=0x216ec80, query=' '
+conn=0x216ec80, query='select version()'
+    [ fetched 1 rows ]
+    [ PostgreSQL version string = 'PostgreSQL 9.4.11 on x86_64-unknown-linux-gnu, compiled by gcc (Debian 4.9.2-10) 4.9.2, 64-bit' ]
+    [ PostgreSQL version number = '9.4' ]
+conn=0x216ec80, query='set DateStyle to 'ISO''
+conn=0x216ec80, query='set extra_float_digits to 2'
+conn=0x216ec80, query='select oid, typbasetype from pg_type where typname = 'lo''
+    [ fetched 0 rows ]
+    [ Large Object oid = -999 ]
+conn=0x216ec80, query='select pg_client_encoding()'
+    [ fetched 1 rows ]
+    [ Client encoding = 'UTF8' (code = 6) ]
+conn=0x216ec80, query='PREPARE "_PLAN0x2196250" as SELECT blks_hit from pg_stat_database WHERE datname = 'zabbix';;EXECUTE "_PLAN0x2196250"'
+    [ fetched 1 rows ]
+conn=0x216ec80, query='DEALLOCATE "_PLAN0x2196250"'
+conn=0x216ec80, query='PREPARE "_PLAN0x2196250" as \q;EXECUTE "_PLAN0x2196250"'
+ERROR from backend during send_query: 'ERROR:  syntax error at or near "\" at character 29'
+STATEMENT ERROR: func=SC_execute, desc='(null)', errnum=7, errmsg='Error while executing the query'
+                 ------------------------------------------------------------
+                 hdbc=0x216ec80, stmt=0x2196250, result=0x2198e70
+                 prepare=5, internal=0
+                 bindings=(nil), bindings_allocated=0
+                 parameters=(nil), parameters_allocated=0
+                 statement_type=-1, statement='\q'
+                 stmt_with_params='PREPARE "_PLAN0x2196250" as \q;EXECUTE "_PLAN0x2196250"'
+                 data_at_exec=-1, current_exec_param=-1, put_data=0
+                 currTuple=-1, current_col=-1, lobj_fd=-1
+                 maxRows=0, rowset_size=1, keyset_size=0, cursor_type=0, scroll_concurrency=1
+                 cursor_name='SQL_CUR0x2196250'
+                 ----------------QResult Info -------------------------------
+                 fields=0x2162430, backend_tuples=(nil), tupleField=0, conn=(nil)
+                 fetch_count=0, num_total_rows=0, num_fields=0, cursor='(NULL)'
+                 message='ERROR:  syntax error at or near "\" at character 29', command='(NULL)', notice='(NULL)'
+                 status=7, inTuples=0
+CONN ERROR: func=SC_execute, desc='(null)', errnum=110, errmsg='ERROR:  syntax error at or near "\" at character 29'
+            ------------------------------------------------------------
+            henv=0x2146200, conn=0x216ec80, status=1, num_stmts=16
+            sock=0x2170d00, stmts=0x216f7d0, lobj_type=-999
+            ---------------- Socket Info -------------------------------
+            socket=5, reverse=0, errornumber=0, errormsg='(NULL)'
+            buffer_in=35065312, buffer_out=35069424
+            buffer_filled_in=55, buffer_filled_out=0, buffer_read_in=55
+conn=0x216ec80, PGAPI_Disconnect

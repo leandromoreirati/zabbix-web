@@ -1,0 +1,103 @@
+<VirtualHost *:80>
+     ServerAdmin $APACHE_SRV_ADMIN
+     ServerName $APACHE_VHOST
+     ServerAlias www.$APACHE_VHOST
+     DocumentRoot /usr/share/zabbix
+     LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"" combined
+     ErrorLog ${APACHE_LOG_DIR}/$APACHE_VHOST_error.log
+     CustomLog ${APACHE_LOG_DIR}/$APACHE_VHOST_access.log combined
+
+     # Possible values include: debug, info, notice, warn, error, crit,
+     # alert, emerg.
+     LogLevel warn
+
+     <Directory "/usr/share/zabbix">
+	Options -Indexes +FollowSymLinks +MultiViews
+        AllowOverride All
+        Require all granted
+     </Directory>
+
+     <Directory "/usr/share/zabbix/conf">
+         Require all granted
+         <files *.php>
+             Order deny,allow
+             Deny from all
+         </files>
+     </Directory>
+
+     <Directory "/usr/share/zabbix/app">
+         Require all granted
+         <files *.php>
+             Require all granted
+         </files>
+     </Directory>
+
+     <Directory "/usr/share/zabbix/include">
+         Require all granted
+         <files *.php>
+             Require all granted
+         </files>
+     </Directory>
+
+     <Directory "/usr/share/zabbix/local">
+         Require all granted
+         <files *.php>
+             Require all granted
+         </files>
+     </Directory>
+
+</VirtualHost>
+
+<VirtualHost *:443>
+     ServerAdmin $APACHE_SRV_ADMIN
+     ServerName $APACHE_VHOST
+     ServerAlias www.$APACHE_VHOST
+     DocumentRoot /usr/share/zabbix
+     LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"" combined
+     ErrorLog ${APACHE_LOG_DIR}/$APACHE_VHOST_ssl_error.log
+     CustomLog ${APACHE_LOG_DIR}/$APACHE_VHOST_ssl_access.log combined
+
+     # Possible values include: debug, info, notice, warn, error, crit,
+     # alert, emerg.
+     LogLevel warn
+
+     <Directory "/usr/share/zabbix">
+         Options -Indexes +FollowSymLinks +MultiViews
+         AllowOverride None
+         Require all granted
+     </Directory>
+
+     <Directory "/usr/share/zabbix/conf">
+         Require all granted
+         <files *.php>
+             Order deny,allow
+             Deny from all
+         </files>
+     </Directory>
+
+     <Directory "/usr/share/zabbix/app">
+         Require all granted
+         <files *.php>
+             Require all granted
+         </files>
+     </Directory>
+
+     <Directory "/usr/share/zabbix/include">
+         Require all granted
+         <files *.php>
+             Require all granted
+         </files>
+     </Directory>
+
+     <Directory "/usr/share/zabbix/local">
+         Require all granted
+         <files *.php>
+             Require all granted
+         </files>
+     </Directory>
+
+     SSLEngine on
+     SSLCertificateFile /etc/apache2/ssl/$CERT_FILE
+     SSLCertificateKeyFile /etc/apache2/ssl/$CERT_KEY
+
+</VirtualHost>

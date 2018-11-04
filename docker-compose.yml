@@ -1,0 +1,83 @@
+version: "3.7"
+services:
+
+# ZABBIX WEB
+  zabbix-web-apache-pgsql:
+    image: leandromoreirajfa/zabbix-web-apache-pgsql:1.1
+    command: setup.sh
+    env_file:
+      - zabbix-web.config
+    hostname: zabbix-web-apache-psql
+    ports:
+      - "80:80"
+      - "443:443"
+    stdin_open: true
+    deploy:
+      #placement:
+       # constraints: [node.role == manager]
+      resources:
+        limits:
+          memory: 1024M
+          cpus: '0.70'
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+    #stop_grace_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "250m"
+        max-file: "3"
+    networks:
+      - backend   
+      
+# POSTGRESQL
+  zabbix-pgsql:
+    image: leandromoreirajfa/zabbix-postgres:1.0
+    hostname: zabbix-pgsql
+    command: setup.sh
+    volumes:
+       - postgresqldb:/var/lib/postgres
+    env_file:
+       - postgres.config
+    ports:
+       - "5432:5432"
+    stdin_open: true
+    deploy:
+      #placement:
+       # constraints: [node.role == manager]
+      resources:
+        limits:
+          memory: 1024M
+          cpus: '0.70'
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "250m"
+        max-file: "3"
+    networks:
+      - backend
+
+volumes:
+  zabbix-alertscript:
+  zabbix-externalscript:
+  zabbix-etc:
+  zabbix-snmp:
+  postgresqldb:
+  grafana-lib:
+  elasticdb:
+  
+# REDE
+networks:
+  backend:
+    driver: overlay  
+ 
+  frontend:
+    driver: overlay
