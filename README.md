@@ -6,6 +6,8 @@ Container com instalação do frontend do Zabbix.
  °  Versão 1.1 - 30/08/2018 ==> Atualizacao da versão do Zabbix Server.\
  °  Versão 1.2 - 05/10/2018 ==> Configuração da idioma Portugues.
 
+ Versão do Zabbix: 3.4.14
+
 # PRÉ-REQUISITO
 Os pre-requisitos necessários para execução da stack de serviço:
  1) Docker Instalado e configurado.
