@@ -5,6 +5,7 @@ Container com instalação do frontend do Zabbix.
  °  Versão 1.0 - 15/07/2018 ==> Criação do Dockerfile e do Docker composse.\
  °  Versão 1.1 - 30/08/2018 ==> Atualizacao da versão do Zabbix Server.\
  °  Versão 1.2 - 05/10/2018 ==> Configuração da idioma Portugues.
+
  Versão do Zabbix: 3.4.14
 
 # PRÉ-REQUISITO
